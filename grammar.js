@@ -1,4 +1,4 @@
-const UMINUS_PREC = 5;
+const UMINUS_PREC = 1;
 
 module.exports = grammar({
     name: 'formula',
@@ -11,9 +11,8 @@ module.exports = grammar({
     rules: {
         program: $ => choice(
             $.config,
-            repeat1($.module),
+            repeat($.module),
             seq($.config, repeat1($.module)),
-            '',
         ),
         module: $ => choice(
             $.domain,
@@ -63,7 +62,7 @@ module.exports = grammar({
             seq($.model_fact,'.'),
             seq($.sentence_config,$.model_fact,'.'),
             seq($.model_fact,',',$.model_fact_list),
-            seq($.sentence_config,$.model_fact,'.',$.model_fact_list),
+            seq($.sentence_config,$.model_fact,',',$.model_fact_list),
         )),
         model_fact: $ => choice(
             $.func_term,
@@ -115,14 +114,21 @@ module.exports = grammar({
         trans_sig_in: $ => seq('(',optional($.vom_param_list), ')'),
         domain: $ => seq($.domain_sig_config,'{',optional($.dom_sentences),'}'),
         dom_sentences: $ => repeat1($.dom_sentence_config),
-        dom_sentence_config: $ => seq(optional($.sentence_config),$.dom_sentence),
+        dom_sentence_config: $ => choice(
+            $.dom_sentence,
+            seq($.sentence_config,$.dom_sentence),
+        ),
         dom_sentence: $ => choice(
             $.rule,
             $.type_decl,
             seq('conforms',$.body_list,'.'),
         ),
         domain_sig_config: $ => seq($.domain_sig, optional($.config)),
-        domain_sig: $ => seq($.domain, $.bareid, choice('extends','includes'),optional($.mod_refs)),
+        domain_sig: $ => choice(
+            seq('domain',$.bareid),
+            seq('domain',$.bareid,'extends',$.mod_refs),
+            seq('domain',$.bareid,'includes',$.mod_refs),
+        ),
         config: $ => seq(
             '[',
             $.setting_list,
@@ -133,9 +139,9 @@ module.exports = grammar({
             $.setting_list,
             ']',
         ),
-        setting_list: $ => seq($.setting,optional(seq(',',$.setting_list))),
+        setting_list: $ => commaSep1($.setting),
         setting: $ => seq($.id, '=', $.constant),
-        model_param_list: $ => seq($.mod_ref_rename, optional(seq(',',$.model_param_list))),
+        model_param_list: $ => commaSep1($.mod_ref_rename),
         val_or_model_program: $ => choice(
             seq($.bareid,':',$.unnbody),
             $.mod_ref_rename,
@@ -148,12 +154,12 @@ module.exports = grammar({
         mod_arg_list: $ => seq($.mod_app_arg,optional(seq(',',$.mod_arg_list))),
         mod_app_arg: $ => choice(
             $.func_term,
-            seq($.bareid,'@',$.string),
+            seq($.bareid,'at',$.string),
         ),
         step_or_update_lhs: $ => seq($.id, optional(seq(',',$.step_or_update_lhs))),
         mod_refs: $ => seq($.mod_ref, optional(seq(',',$.mod_refs))),
         mod_ref: $ => choice($.mod_ref_rename, $.mod_ref_no_rename),
-        mod_ref_rename: $ => seq($.bareid, 'renames', $.bareid,optional(seq('@',$.string))),
+        mod_ref_rename: $ => seq($.bareid, '::', $.bareid,optional(seq('@',$.string))),
         mod_ref_no_rename: $ => seq($.bareid, optional(seq('@',$.string))),
         type_decl: $ => seq($.bareid, '::=',$.type_decl_body,'.'),
         type_decl_body: $ => choice(

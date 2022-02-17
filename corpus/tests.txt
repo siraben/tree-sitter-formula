@@ -14,3 +14,43 @@ Comment
   (comment)
   (comment))
 
+================================================================================
+Models
+================================================================================
+
+model m of Mapping
+{
+  Foo(a1,b2).
+}
+
+
+--------------------------------------------------------------------------------
+
+(program
+  (module
+    (model
+      (model_sig_config
+        (model_sig
+          (model_intro
+            (bareid)
+            (mod_ref
+              (mod_ref_no_rename
+                (bareid))))))
+      (model_body
+        (model_sentence
+          (model_fact_list
+            (model_fact
+              (func_term
+                (id
+                  (bareid))
+                (func_term_list
+                  (func_or_compr
+                    (func_term
+                      (atom
+                        (id
+                          (bareid)))))
+                  (func_or_compr
+                    (func_term
+                      (atom
+                        (id
+                          (bareid))))))))))))))

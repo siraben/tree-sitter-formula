@@ -269,10 +269,6 @@
           "named": true
         },
         {
-          "type": "domain",
-          "named": true
-        },
-        {
           "type": "mod_refs",
           "named": true
         }
@@ -913,10 +909,6 @@
         {
           "type": "mod_ref_rename",
           "named": true
-        },
-        {
-          "type": "model_param_list",
-          "named": true
         }
       ]
     }
@@ -1096,10 +1088,6 @@
       "types": [
         {
           "type": "setting",
-          "named": true
-        },
-        {
-          "type": "setting_list",
           "named": true
         }
       ]
@@ -1534,10 +1522,6 @@
     }
   },
   {
-    "type": "",
-    "named": false
-  },
-  {
     "type": "!=",
     "named": false
   },
@@ -1594,6 +1578,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": "::=",
     "named": false
   },
@@ -1642,6 +1630,10 @@
     "named": false
   },
   {
+    "type": "at",
+    "named": false
+  },
+  {
     "type": "atleast",
     "named": false
   },
@@ -1672,6 +1664,10 @@
   {
     "type": "digits",
     "named": true
+  },
+  {
+    "type": "domain",
+    "named": false
   },
   {
     "type": "ensures",
@@ -1748,10 +1744,6 @@
   {
     "type": "real",
     "named": true
-  },
-  {
-    "type": "renames",
-    "named": false
   },
   {
     "type": "requires",

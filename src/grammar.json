@@ -9,7 +9,7 @@
           "name": "config"
         },
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
             "name": "module"
@@ -30,10 +30,6 @@
               }
             }
           ]
-        },
-        {
-          "type": "STRING",
-          "value": ""
         }
       ]
     },
@@ -450,7 +446,7 @@
               },
               {
                 "type": "STRING",
-                "value": "."
+                "value": ","
               },
               {
                 "type": "SYMBOL",
@@ -928,23 +924,24 @@
       }
     },
     "dom_sentence_config": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SYMBOL",
+          "name": "dom_sentence"
+        },
+        {
+          "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
               "name": "sentence_config"
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "dom_sentence"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dom_sentence"
         }
       ]
     },
@@ -1000,38 +997,60 @@
       ]
     },
     "domain_sig": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "domain"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "bareid"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
+            {
+              "type": "STRING",
+              "value": "domain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "bareid"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "domain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "bareid"
+            },
             {
               "type": "STRING",
               "value": "extends"
             },
             {
-              "type": "STRING",
-              "value": "includes"
+              "type": "SYMBOL",
+              "name": "mod_refs"
             }
           ]
         },
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
+            {
+              "type": "STRING",
+              "value": "domain"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "bareid"
+            },
+            {
+              "type": "STRING",
+              "value": "includes"
+            },
             {
               "type": "SYMBOL",
               "name": "mod_refs"
-            },
-            {
-              "type": "BLANK"
             }
           ]
         }
@@ -1079,25 +1098,20 @@
           "name": "setting"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ","
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "setting_list"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "setting"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1126,25 +1140,20 @@
           "name": "mod_ref_rename"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ","
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "model_param_list"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "mod_ref_rename"
+              }
+            ]
+          }
         }
       ]
     },
@@ -1351,7 +1360,7 @@
             },
             {
               "type": "STRING",
-              "value": "@"
+              "value": "at"
             },
             {
               "type": "SYMBOL",
@@ -1443,7 +1452,7 @@
         },
         {
           "type": "STRING",
-          "value": "renames"
+          "value": "::"
         },
         {
           "type": "SYMBOL",
@@ -2180,7 +2189,7 @@
         },
         {
           "type": "PREC_RIGHT",
-          "value": 5,
+          "value": 1,
           "content": {
             "type": "SEQ",
             "members": [
