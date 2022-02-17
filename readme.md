@@ -2,6 +2,8 @@
 Formula grammar for
 [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
+![Syntax highlighting](./example.png)
+
 ## Building
 ```ShellSession
 $ npm run build && tree-sitter test
