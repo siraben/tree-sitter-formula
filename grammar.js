@@ -232,7 +232,7 @@ module.exports = grammar({
         binop: $ => choice('*','/','mod','+','-'),
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
         bareid: $ => /[A-Za-z_]([A-Za-z_0-9]*[']*)/,
-        qualid: $ => /(BID[.])+(BID|TID|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,
+        qualid: $ => /([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,
         comment: $ => token(choice(
             seq('//', /.*/),
             seq(
