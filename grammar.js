@@ -1,5 +1,3 @@
-const UMINUS_PREC = 1;
-
 module.exports = grammar({
     name: 'formula',
     extras: $ => [
@@ -218,7 +216,7 @@ module.exports = grammar({
         func_or_compr: $ => choice($.func_term, $.compr),
         func_term: $ => choice(
             $.atom,
-            prec.right(UMINUS_PREC,seq($.unop, $.func_term)), // precedence uminus
+            prec.right(4,seq($.unop, $.func_term)), // precedence uminus
             prec.right(3,seq($.func_term,$.binop,$.func_term)),
             seq(field('name',$.id),'(',$.func_term_list,')'),
             // include quoting?
@@ -229,7 +227,7 @@ module.exports = grammar({
         id: $ => choice($._bareid,$._qualid),
         constant: $ => choice($.digits,$.real,$.frac,$.string),
         unop: $ => '-',
-        binop: $ => choice('*','/','mod','+','-'),
+        binop: $ => choice('*','/','%','+','-'),
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
         _bareid: $ => /([%]?[A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?)/,
         _qualid: $ => /([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|#[A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,

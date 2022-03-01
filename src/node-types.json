@@ -1449,6 +1449,10 @@
     "named": false
   },
   {
+    "type": "%",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -1618,10 +1622,6 @@
   },
   {
     "type": "machine",
-    "named": false
-  },
-  {
-    "type": "mod",
     "named": false
   },
   {

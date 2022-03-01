@@ -2189,7 +2189,7 @@
         },
         {
           "type": "PREC_RIGHT",
-          "value": 1,
+          "value": 4,
           "content": {
             "type": "SEQ",
             "members": [
@@ -2333,7 +2333,7 @@
         },
         {
           "type": "STRING",
-          "value": "mod"
+          "value": "%"
         },
         {
           "type": "STRING",
