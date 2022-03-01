@@ -32,28 +32,33 @@ model m of Mapping
       (model_sig_config
         (model_sig
           (model_intro
-            (bareid)
+            (bareid
+              (bid))
             (mod_ref
               (mod_ref_no_rename
-                (bareid))))))
+                (bareid
+                  (bid)))))))
       (model_body
         (model_sentence
           (model_fact_list
             (model_fact
               (func_term
                 (id
-                  (bareid))
+                  (bareid
+                    (bid)))
                 (func_term_list
                   (func_or_compr
                     (func_term
                       (atom
                         (id
-                          (bareid)))))
+                          (bareid
+                            (bid))))))
                   (func_or_compr
                     (func_term
                       (atom
                         (id
-                          (bareid))))))))))))))
+                          (bareid
+                            (bid)))))))))))))))
 
 ================================================================================
 Dotted identifiers
@@ -70,7 +75,8 @@ domain D
     (domain
       (domain_sig_config
         (domain_sig
-          (bareid)))
+          (bareid
+            (bid))))
       (dom_sentences
         (dom_sentence_config
           (dom_sentence
@@ -80,16 +86,19 @@ domain D
                   (func_term
                     (atom
                       (id
-                        (bareid))))))
+                        (bareid
+                          (bid)))))))
               (body_list
                 (body
                   (constraint
                     (id
-                      (bareid))
+                      (bareid
+                        (bid)))
                     (func_term
                       (atom
                         (id
-                          (bareid))))))))))
+                          (bareid
+                            (bid)))))))))))
         (dom_sentence_config
           (dom_sentence
             (rule
@@ -98,13 +107,17 @@ domain D
                   (func_term
                     (atom
                       (id
-                        (bareid))))))
+                        (bareid
+                          (bid)))))))
               (body_list
                 (body
                   (constraint
                     (id
-                      (bareid))
+                      (bareid
+                        (bid)))
                     (func_term
                       (atom
                         (id
-                          (qualid))))))))))))))
+                          (qualid
+                            (bid)
+                            (bid)))))))))))))))
