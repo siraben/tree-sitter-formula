@@ -5,6 +5,7 @@ module.exports = grammar({
         $.comment,
     ],
     conflicts: $ => [
+        [$.bareid, $.qualid]
     ],
     rules: {
         program: $ => choice(
@@ -177,7 +178,7 @@ module.exports = grammar({
             seq($.bareid,':','any',$.unnbody),
         ),
         maparrow: $ => choice('->','=>'),
-        unnbody: $ => sep1($.unncmp,'+'),
+        unnbody: $ => prec.right(3,sep1($.unncmp,'+')),
         unncmp: $ => choice(
             $.typeid,
             seq('{',$.enum_list,'}'),
@@ -197,7 +198,9 @@ module.exports = grammar({
         real: $ => /\d+\.\d+/,
         frac: $ => /\d+\/[-+]?0*[1-9]\d*/,
         string: $ => seq('"', /(?:[^"\\]|\\.)*/, '"'),
-        rule: $ => prec.right(1,seq($.func_term_list,choice('.',':-'),optional(seq($.body_list,'.')))),
+        rule: $ => prec.right(1,seq($.func_term_list,
+                                    optional(seq(':-',$.body_list)),
+                                   '.')),
         compr: $ => seq('{',$.func_term_list,$.compr_rest),
         compr_rest: $ => choice(
             '}',
@@ -230,9 +233,20 @@ module.exports = grammar({
         unop: $ => '-',
         binop: $ => choice('*','/','%','+','-'),
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
-        bareid: $ => /([%]?[A-Za-z_](\w*[']*)|[#][A-Za-z_](\w*[']*)(\d+[\]])?)/,
-        // TID: #[A-Za-z_](\w*[']*)(\[\d+\])?
-        qualid: $ => /([A-Za-z_](\w*[']*)[.])+([A-Za-z_](\w*[']*)|#[A-Za-z_](\w*[']*)(\d+[\]])?|SID)|[%][A-Za-z_](\w*[']*)([.][A-Za-z_](\w*[']*))+/,
+        // BAREID: ([%]?BID | TID) ;
+        bareid: $ => choice(seq(optional('%'),$.bid),$.tid),
+        qualid: $ => prec.right(4,choice(
+            // (BID[.])+(BID|TID|SID)
+            seq(repeat1(seq($.bid,'.')),choice($.bid,$.tid,$.sid)),
+            // [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+
+            /%[A-Za-z_]\w*'*(\.[A-Za-z_]\w*'*)+/,
+        )),
+        // BID: [A-Za-z_]([A-Za-z_0-9]*[']*)
+        bid: $ => /[A-Za-z_](\w*'*)/,
+        // TID: [#][A-Za-z_]([A-Za-z_0-9]*[']*)([[][0-9]+[\]])?
+        tid: $ => /#[A-Za-z_](\w*'*)(\[\d+\])?/,
+        // SID: [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))*
+        sid: $ => /%[A-Za-z_](\w*'*)(\.[A-Za-z_](\w*'*))*/,
         comment: $ => token(choice(
             seq('//', /.*/),
             seq(
