@@ -259,7 +259,18 @@
   {
     "type": "domain_sig",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": false,
@@ -296,14 +307,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "digits",
           "named": true
         },
         {
           "type": "frac",
+          "named": true
+        },
+        {
+          "type": "qualid",
           "named": true
         },
         {
@@ -337,9 +356,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "unnbody",
           "named": true
@@ -446,7 +469,21 @@
   {
     "type": "id",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
+        {
+          "type": "qualid",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "machine",
@@ -487,9 +524,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "func_term",
           "named": true
@@ -548,6 +589,10 @@
       "required": true,
       "types": [
         {
+          "type": "bareid",
+          "named": true
+        },
+        {
           "type": "machine_sig_in",
           "named": true
         },
@@ -598,9 +643,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "func_term",
           "named": true
@@ -674,9 +723,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -689,9 +742,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "string",
           "named": true
@@ -799,9 +856,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "func_term",
           "named": true
@@ -837,9 +898,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "mod_ref",
           "named": true
@@ -1196,9 +1261,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "transform_rest",
           "named": true
@@ -1268,9 +1337,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "tsystem_rest",
           "named": true
@@ -1302,9 +1375,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "type_decl_body",
           "named": true
@@ -1342,7 +1419,21 @@
   {
     "type": "typeid",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
+        {
+          "type": "qualid",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "unnbody",
@@ -1407,9 +1498,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "bareid",
+          "named": true
+        },
         {
           "type": "mod_ref_rename",
           "named": true
@@ -1565,6 +1660,10 @@
     "named": false
   },
   {
+    "type": "bareid",
+    "named": true
+  },
+  {
     "type": "bij",
     "named": false
   },
@@ -1651,6 +1750,10 @@
   {
     "type": "property",
     "named": false
+  },
+  {
+    "type": "qualid",
+    "named": true
   },
   {
     "type": "real",

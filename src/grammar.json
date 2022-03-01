@@ -173,7 +173,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "STRING",
@@ -205,7 +205,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
@@ -469,7 +469,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -576,7 +576,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -601,7 +601,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -628,7 +628,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
@@ -703,7 +703,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
@@ -997,60 +997,50 @@
       ]
     },
     "domain_sig": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
+          "type": "STRING",
+          "value": "domain"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "bareid"
+          }
+        },
+        {
+          "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "domain"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "extends"
+                },
+                {
+                  "type": "STRING",
+                  "value": "includes"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "_bareid"
+              "type": "BLANK"
             }
           ]
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
-            {
-              "type": "STRING",
-              "value": "domain"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_bareid"
-            },
-            {
-              "type": "STRING",
-              "value": "extends"
-            },
             {
               "type": "SYMBOL",
               "name": "mod_refs"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "domain"
             },
             {
-              "type": "SYMBOL",
-              "name": "_bareid"
-            },
-            {
-              "type": "STRING",
-              "value": "includes"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "mod_refs"
+              "type": "BLANK"
             }
           ]
         }
@@ -1165,7 +1155,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -1356,7 +1346,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -1448,7 +1438,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "STRING",
@@ -1456,7 +1446,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "CHOICE",
@@ -1486,7 +1476,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "CHOICE",
@@ -1516,7 +1506,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "STRING",
@@ -1700,7 +1690,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -1717,7 +1707,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_bareid"
+              "name": "bareid"
             },
             {
               "type": "STRING",
@@ -1804,11 +1794,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
-          "name": "_qualid"
+          "name": "qualid"
         }
       ]
     },
@@ -1858,11 +1848,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
-          "name": "_qualid"
+          "name": "qualid"
         },
         {
           "type": "SEQ",
@@ -2287,11 +2277,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_bareid"
+          "name": "bareid"
         },
         {
           "type": "SYMBOL",
-          "name": "_qualid"
+          "name": "qualid"
         }
       ]
     },
@@ -2378,11 +2368,11 @@
         }
       ]
     },
-    "_bareid": {
+    "bareid": {
       "type": "PATTERN",
       "value": "([%]?[A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\\]])?)"
     },
-    "_qualid": {
+    "qualid": {
       "type": "PATTERN",
       "value": "([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|#[A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\\]])?|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+"
     },
