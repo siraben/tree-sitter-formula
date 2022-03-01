@@ -1,4 +1,4 @@
-[ "new" "is" "model" "partial" "domain" ] @keyword
+[ "new" "is" "model" "partial" "domain" "any" "fun" "of" ] @keyword
 (comment) @comment
 (real) @number
 (frac) @number

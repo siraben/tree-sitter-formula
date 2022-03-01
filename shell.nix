@@ -2,5 +2,5 @@
 with pkgs;
 
 mkShell {
-  packages = [ tree-sitter ];
+  packages = [ tree-sitter emscripten ];
 }
