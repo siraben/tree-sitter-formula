@@ -32,25 +32,67 @@ model m of Mapping
       (model_sig_config
         (model_sig
           (model_intro
-            (bareid)
             (mod_ref
-              (mod_ref_no_rename
-                (bareid))))))
+              (mod_ref_no_rename)))))
       (model_body
         (model_sentence
           (model_fact_list
             (model_fact
               (func_term
-                (id
-                  (bareid))
+                (id)
                 (func_term_list
                   (func_or_compr
                     (func_term
                       (atom
-                        (id
-                          (bareid)))))
+                        (id))))
                   (func_or_compr
                     (func_term
                       (atom
-                        (id
-                          (bareid))))))))))))))
+                        (id)))))))))))))
+
+================================================================================
+Dotted identifiers
+================================================================================
+domain D
+{
+   A :- x is y.
+   A :- x is B.y.
+}
+--------------------------------------------------------------------------------
+
+(program
+  (module
+    (domain
+      (domain_sig_config
+        (domain_sig))
+      (dom_sentences
+        (dom_sentence_config
+          (dom_sentence
+            (rule
+              (func_term_list
+                (func_or_compr
+                  (func_term
+                    (atom
+                      (id)))))
+              (body_list
+                (body
+                  (constraint
+                    (id)
+                    (func_term
+                      (atom
+                        (id)))))))))
+        (dom_sentence_config
+          (dom_sentence
+            (rule
+              (func_term_list
+                (func_or_compr
+                  (func_term
+                    (atom
+                      (id)))))
+              (body_list
+                (body
+                  (constraint
+                    (id)
+                    (func_term
+                      (atom
+                        (id)))))))))))))
