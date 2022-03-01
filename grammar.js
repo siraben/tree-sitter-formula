@@ -35,7 +35,7 @@ module.exports = grammar({
         ),
         machine_prop: $ => seq(
             'property',
-            $.bareid,
+            $._bareid,
             '=',
             $.func_term,
             '.',
@@ -43,7 +43,7 @@ module.exports = grammar({
         machine_sig_config: $ => repeat1($.machine_sig),
         machine_sig: $ => seq(
             'machine',
-            $.bareid,
+            $._bareid,
             $.machine_sig_in,
             'of',
             $.mod_refs,
@@ -66,7 +66,7 @@ module.exports = grammar({
         )),
         model_fact: $ => choice(
             $.func_term,
-            seq($.bareid,'is',$.func_term),
+            seq($._bareid,'is',$.func_term),
         ),
         card_spec: $ => choice(
             'some',
@@ -80,17 +80,17 @@ module.exports = grammar({
             seq($.model_intro, 'extends', $.mod_refs),
         ),
         model_intro: $ => choice(
-            seq('model', $.bareid, 'of', $.mod_ref),
-            seq('partial', 'model', $.bareid, 'of', $.mod_ref),
+            seq('model', $._bareid, 'of', $.mod_ref),
+            seq('partial', 'model', $._bareid, 'of', $.mod_ref),
         ),
-        tsystem: $ => seq('transform', 'system', $.bareid, $.tsystem_rest),
+        tsystem: $ => seq('transform', 'system', $._bareid, $.tsystem_rest),
         tsystem_rest: $ => seq($.transform_sig_config, '{',optional($.trans_steps),'}'),
         trans_steps: $ => repeat1($.trans_step_config),
         trans_step_config: $ => choice(
             $.step,
             seq($.sentence_config, $.step),
         ),
-        transform: $ => seq('transform', $.bareid, $.transform_rest),
+        transform: $ => seq('transform', $._bareid, $.transform_rest),
         transform_rest: $ => seq($.transform_sig_config, '{',optional($.trans_body),'}'),
         trans_body: $ => repeat1($.trans_sentence_config),
         trans_sentence_config: $ => choice(
@@ -125,9 +125,9 @@ module.exports = grammar({
         ),
         domain_sig_config: $ => seq($.domain_sig, optional($.config)),
         domain_sig: $ => choice(
-            seq('domain',$.bareid),
-            seq('domain',$.bareid,'extends',$.mod_refs),
-            seq('domain',$.bareid,'includes',$.mod_refs),
+            seq('domain',$._bareid),
+            seq('domain',$._bareid,'extends',$.mod_refs),
+            seq('domain',$._bareid,'includes',$.mod_refs),
         ),
         config: $ => seq(
             '[',
@@ -143,7 +143,7 @@ module.exports = grammar({
         setting: $ => seq($.id, '=', $.constant),
         model_param_list: $ => commaSep1($.mod_ref_rename),
         val_or_model_program: $ => choice(
-            seq($.bareid,':',$.unnbody),
+            seq($._bareid,':',$.unnbody),
             $.mod_ref_rename,
         ),
         vom_param_list: $ => seq($.val_or_model_program, optional(seq(',',$.vom_param_list))),
@@ -154,14 +154,14 @@ module.exports = grammar({
         mod_arg_list: $ => seq($.mod_app_arg,optional(seq(',',$.mod_arg_list))),
         mod_app_arg: $ => choice(
             $.func_term,
-            seq($.bareid,'at',$.string),
+            seq($._bareid,'at',$.string),
         ),
         step_or_update_lhs: $ => seq($.id, optional(seq(',',$.step_or_update_lhs))),
         mod_refs: $ => seq($.mod_ref, optional(seq(',',$.mod_refs))),
         mod_ref: $ => choice($.mod_ref_rename, $.mod_ref_no_rename),
-        mod_ref_rename: $ => seq($.bareid, '::', $.bareid,optional(seq('@',$.string))),
-        mod_ref_no_rename: $ => seq($.bareid, optional(seq('@',$.string))),
-        type_decl: $ => seq($.bareid, '::=',$.type_decl_body,'.'),
+        mod_ref_rename: $ => seq($._bareid, '::', $._bareid,optional(seq('@',$.string))),
+        mod_ref_no_rename: $ => seq($._bareid, optional(seq('@',$.string))),
+        type_decl: $ => seq($._bareid, '::=',$.type_decl_body,'.'),
         type_decl_body: $ => choice(
             $.unnbody,
             seq('(',$.fields,')'),
@@ -174,8 +174,8 @@ module.exports = grammar({
         field: $ => choice(
             $.unnbody,
             seq('any',$.unnbody),
-            seq($.bareid,':',$.unnbody),
-            seq($.bareid,':','any',$.unnbody),
+            seq($._bareid,':',$.unnbody),
+            seq($._bareid,':','any',$.unnbody),
         ),
         maparrow: $ => choice('->','=>'),
         unnbody: $ => sep1($.unncmp,'+'),
@@ -183,15 +183,15 @@ module.exports = grammar({
             $.typeid,
             seq('{',$.enum_list,'}'),
         ),
-        typeid: $ => choice($.bareid,$.qualid),
+        typeid: $ => choice($._bareid,$._qualid),
         enum_list: $ => commaSep1($.enum_cnst),
         enum_cnst: $ => choice(
             $.digits,
             $.real,
             $.frac,
             $.string,
-            $.bareid,
-            $.qualid,
+            $._bareid,
+            $._qualid,
             seq($.digits,'..',$.digits),
         ),
         digits: $ => /[0-9]+/,
@@ -220,19 +220,19 @@ module.exports = grammar({
             $.atom,
             prec.right(UMINUS_PREC,seq($.unop, $.func_term)), // precedence uminus
             prec.right(3,seq($.func_term,$.binop,$.func_term)),
-            seq($.id,'(',$.func_term_list,')'),
+            seq(field('name',$.id),'(',$.func_term_list,')'),
             // include quoting?
             // seq($.qstart,$.quotelist,$.qend)
             seq('(',$.func_term,')'),
         ),
         atom: $ => choice($.id,$.constant),
-        id: $ => choice($.bareid,$.qualid),
+        id: $ => choice($._bareid,$._qualid),
         constant: $ => choice($.digits,$.real,$.frac,$.string),
         unop: $ => '-',
         binop: $ => choice('*','/','mod','+','-'),
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
-        bareid: $ => /[A-Za-z_]([A-Za-z_0-9]*[']*)/,
-        qualid: $ => /([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,
+        _bareid: $ => /([%]?[A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?)/,
+        _qualid: $ => /([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|#[A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?|SID) | [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,
         comment: $ => token(choice(
             seq('//', /.*/),
             seq(

@@ -261,13 +261,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "mod_refs",
           "named": true
@@ -300,22 +296,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "digits",
           "named": true
         },
         {
           "type": "frac",
-          "named": true
-        },
-        {
-          "type": "qualid",
           "named": true
         },
         {
@@ -349,13 +337,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "unnbody",
           "named": true
@@ -405,7 +389,18 @@
   {
     "type": "func_term",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "id",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -424,10 +419,6 @@
         },
         {
           "type": "func_term_list",
-          "named": true
-        },
-        {
-          "type": "id",
           "named": true
         },
         {
@@ -455,21 +446,7 @@
   {
     "type": "id",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
-        {
-          "type": "qualid",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "machine",
@@ -510,13 +487,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "func_term",
           "named": true
@@ -575,10 +548,6 @@
       "required": true,
       "types": [
         {
-          "type": "bareid",
-          "named": true
-        },
-        {
           "type": "machine_sig_in",
           "named": true
         },
@@ -629,13 +598,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "func_term",
           "named": true
@@ -709,13 +674,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "string",
           "named": true
@@ -728,13 +689,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "string",
           "named": true
@@ -842,13 +799,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "func_term",
           "named": true
@@ -884,13 +837,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "mod_ref",
           "named": true
@@ -1247,13 +1196,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "transform_rest",
           "named": true
@@ -1323,13 +1268,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "tsystem_rest",
           "named": true
@@ -1361,13 +1302,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "type_decl_body",
           "named": true
@@ -1405,21 +1342,7 @@
   {
     "type": "typeid",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
-        {
-          "type": "qualid",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "unnbody",
@@ -1484,13 +1407,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "mod_ref_rename",
           "named": true
@@ -1642,10 +1561,6 @@
     "named": false
   },
   {
-    "type": "bareid",
-    "named": true
-  },
-  {
     "type": "bij",
     "named": false
   },
@@ -1736,10 +1651,6 @@
   {
     "type": "property",
     "named": false
-  },
-  {
-    "type": "qualid",
-    "named": true
   },
   {
     "type": "real",
