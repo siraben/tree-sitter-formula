@@ -10,7 +10,13 @@
     "node-gyp": "^8.4.1"
   },
   "scripts": {
-    "build": "tree-sitter generate && node-gyp build"
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test",
+    "install": "node-gyp rebuild",
+    "generate": "tree-sitter generate",
+    "parse": "tree-sitter parse",
+    "build-wasm": "tree-sitter build-wasm",
+    "playground": "tree-sitter playground"
   },
   "tree-sitter": [
     {
