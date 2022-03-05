@@ -22,5 +22,8 @@
       ],
       "scope": "source.nix"
     }
-  ]
+  ],
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.4"
+  }
 }
