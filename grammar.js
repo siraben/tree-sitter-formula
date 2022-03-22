@@ -161,7 +161,7 @@ module.exports = grammar({
         mod_ref: $ => choice($.mod_ref_rename, $.mod_ref_no_rename),
         mod_ref_rename: $ => seq($.bareid, '::', $.bareid,optional(seq('@',$.string))),
         mod_ref_no_rename: $ => seq($.bareid, optional(seq('@',$.string))),
-        type_decl: $ => prec.right(1,seq($.bareid, '::=',$.type_decl_body,'.')),
+        type_decl: $ => prec.right(2,seq($.bareid, '::=',$.type_decl_body,'.')),
         type_decl_body: $ => choice(
             $.unnbody,
             seq('(',$.fields,')'),
@@ -216,7 +216,7 @@ module.exports = grammar({
             seq('no',$.id,'is',$.func_term),
             seq($.func_term,$.relop,$.func_term),
         ),
-        func_term_list: $ => commaSep1($.func_or_compr),
+        func_term_list: $ => prec.right(2,commaSep1($.func_or_compr)),
         func_or_compr: $ => choice($.func_term, $.compr),
         func_term: $ => choice(
             $.atom,
