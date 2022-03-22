@@ -191,7 +191,7 @@ module.exports = grammar({
             $.string,
             $.bareid,
             $.qualid,
-            seq($.digits,'..',$.digits),
+            seq(optional('-'),$.digits,'..',optional('-'),$.digits),
         ),
         digits: $ => /[0-9]+/,
         real: $ => /[0-9]+\.[0-9]+/,
