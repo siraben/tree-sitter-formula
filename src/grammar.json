@@ -1502,25 +1502,29 @@
       ]
     },
     "type_decl": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "bareid"
-        },
-        {
-          "type": "STRING",
-          "value": "::="
-        },
-        {
-          "type": "SYMBOL",
-          "name": "type_decl_body"
-        },
-        {
-          "type": "STRING",
-          "value": "."
-        }
-      ]
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "bareid"
+          },
+          {
+            "type": "STRING",
+            "value": "::="
+          },
+          {
+            "type": "SYMBOL",
+            "name": "type_decl_body"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          }
+        ]
+      }
     },
     "type_decl_body": {
       "type": "CHOICE",
@@ -1739,29 +1743,33 @@
       ]
     },
     "unnbody": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "unncmp"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "+"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "unncmp"
-              }
-            ]
+      "type": "PREC_RIGHT",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "unncmp"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "+"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "unncmp"
+                }
+              ]
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     "unncmp": {
       "type": "CHOICE",
@@ -1940,28 +1948,15 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "STRING",
-                "value": "."
-              },
-              {
-                "type": "STRING",
-                "value": ":-"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "body_list"
+                    "type": "STRING",
+                    "value": ":-"
                   },
                   {
-                    "type": "STRING",
-                    "value": "."
+                    "type": "SYMBOL",
+                    "name": "body_list"
                   }
                 ]
               },
@@ -1969,6 +1964,10 @@
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "STRING",
+            "value": "."
           }
         ]
       }
@@ -2393,12 +2392,97 @@
       ]
     },
     "bareid": {
-      "type": "PATTERN",
-      "value": "([%]?[A-Za-z_](\\w*[']*)|[#][A-Za-z_](\\w*[']*)(\\d+[\\]])?)"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "%"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "bid"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tid"
+        }
+      ]
     },
     "qualid": {
+      "type": "PREC_RIGHT",
+      "value": 4,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "bid"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "bid"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "tid"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "sid"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "%[A-Za-z_]\\w*'*(\\.[A-Za-z_]\\w*'*)+"
+          }
+        ]
+      }
+    },
+    "bid": {
       "type": "PATTERN",
-      "value": "([A-Za-z_](\\w*[']*)[.])+([A-Za-z_](\\w*[']*)|#[A-Za-z_](\\w*[']*)(\\d+[\\]])?|SID)|[%][A-Za-z_](\\w*[']*)([.][A-Za-z_](\\w*[']*))+"
+      "value": "[A-Za-z_](\\w*'*)"
+    },
+    "tid": {
+      "type": "PATTERN",
+      "value": "#[A-Za-z_](\\w*'*)(\\[\\d+\\])?"
+    },
+    "sid": {
+      "type": "PATTERN",
+      "value": "%[A-Za-z_](\\w*'*)(\\.[A-Za-z_](\\w*'*))*"
     },
     "comment": {
       "type": "TOKEN",
@@ -2461,7 +2545,12 @@
       "name": "comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "bareid",
+      "qualid"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

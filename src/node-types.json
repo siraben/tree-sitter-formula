@@ -19,6 +19,25 @@
     }
   },
   {
+    "type": "bareid",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bid",
+          "named": true
+        },
+        {
+          "type": "tid",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binop",
     "named": true,
     "fields": {}
@@ -1035,6 +1054,29 @@
     }
   },
   {
+    "type": "qualid",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "bid",
+          "named": true
+        },
+        {
+          "type": "sid",
+          "named": true
+        },
+        {
+          "type": "tid",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "relop",
     "named": true,
     "fields": {}
@@ -1660,7 +1702,7 @@
     "named": false
   },
   {
-    "type": "bareid",
+    "type": "bid",
     "named": true
   },
   {
@@ -1752,10 +1794,6 @@
     "named": false
   },
   {
-    "type": "qualid",
-    "named": true
-  },
-  {
     "type": "real",
     "named": true
   },
@@ -1768,6 +1806,10 @@
     "named": false
   },
   {
+    "type": "sid",
+    "named": true
+  },
+  {
     "type": "some",
     "named": false
   },
@@ -1778,6 +1820,10 @@
   {
     "type": "system",
     "named": false
+  },
+  {
+    "type": "tid",
+    "named": true
   },
   {
     "type": "transform",

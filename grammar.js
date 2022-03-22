@@ -161,7 +161,7 @@ module.exports = grammar({
         mod_ref: $ => choice($.mod_ref_rename, $.mod_ref_no_rename),
         mod_ref_rename: $ => seq($.bareid, '::', $.bareid,optional(seq('@',$.string))),
         mod_ref_no_rename: $ => seq($.bareid, optional(seq('@',$.string))),
-        type_decl: $ => seq($.bareid, '::=',$.type_decl_body,'.'),
+        type_decl: $ => prec.right(1,seq($.bareid, '::=',$.type_decl_body,'.')),
         type_decl_body: $ => choice(
             $.unnbody,
             seq('(',$.fields,')'),
