@@ -32,23 +32,28 @@ model m of Mapping
       (model_sig_config
         (model_sig
           (model_intro
+            (bareid)
             (mod_ref
-              (mod_ref_no_rename)))))
+              (mod_ref_no_rename
+                (bareid))))))
       (model_body
         (model_sentence
           (model_fact_list
             (model_fact
               (func_term
-                (id)
+                (id
+                  (bareid))
                 (func_term_list
                   (func_or_compr
                     (func_term
                       (atom
-                        (id))))
+                        (id
+                          (bareid)))))
                   (func_or_compr
                     (func_term
                       (atom
-                        (id)))))))))))))
+                        (id
+                          (bareid))))))))))))))
 
 ================================================================================
 Dotted identifiers
@@ -64,7 +69,8 @@ domain D
   (module
     (domain
       (domain_sig_config
-        (domain_sig))
+        (domain_sig
+          (bareid)))
       (dom_sentences
         (dom_sentence_config
           (dom_sentence
@@ -73,14 +79,17 @@ domain D
                 (func_or_compr
                   (func_term
                     (atom
-                      (id)))))
+                      (id
+                        (bareid))))))
               (body_list
                 (body
                   (constraint
-                    (id)
+                    (id
+                      (bareid))
                     (func_term
                       (atom
-                        (id)))))))))
+                        (id
+                          (bareid))))))))))
         (dom_sentence_config
           (dom_sentence
             (rule
@@ -88,11 +97,14 @@ domain D
                 (func_or_compr
                   (func_term
                     (atom
-                      (id)))))
+                      (id
+                        (bareid))))))
               (body_list
                 (body
                   (constraint
-                    (id)
+                    (id
+                      (bareid))
                     (func_term
                       (atom
-                        (id)))))))))))))
+                        (id
+                          (qualid))))))))))))))
