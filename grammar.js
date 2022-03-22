@@ -193,9 +193,9 @@ module.exports = grammar({
             $.qualid,
             seq(optional('-'),$.digits,'..',optional('-'),$.digits),
         ),
-        digits: $ => /[0-9]+/,
-        real: $ => /[0-9]+\.[0-9]+/,
-        frac: $ => /[0-9]+\/[-+]?[0]*[1-9][0-9]*/,
+        digits: $ => /\d+/,
+        real: $ => /\d+\.\d+/,
+        frac: $ => /\d+\/[-+]?0*[1-9]\d*/,
         string: $ => seq('"', /(?:[^"\\]|\\.)*/, '"'),
         rule: $ => prec.right(1,seq($.func_term_list,choice('.',':-'),optional(seq($.body_list,'.')))),
         compr: $ => seq('{',$.func_term_list,$.compr_rest),
@@ -230,8 +230,9 @@ module.exports = grammar({
         unop: $ => '-',
         binop: $ => choice('*','/','%','+','-'),
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
-        bareid: $ => /([%]?[A-Za-z_]([A-Za-z_0-9]*[']*)|[#][A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?)/,
-        qualid: $ => /([A-Za-z_]([A-Za-z_0-9]*[']*)[.])+([A-Za-z_]([A-Za-z_0-9]*[']*)|#[A-Za-z_]([A-Za-z_0-9]*[']*)([0-9]+[\]])?|SID)|[%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+/,
+        bareid: $ => /([%]?[A-Za-z_](\w*[']*)|[#][A-Za-z_](\w*[']*)(\d+[\]])?)/,
+        // TID: #[A-Za-z_](\w*[']*)(\[\d+\])?
+        qualid: $ => /([A-Za-z_](\w*[']*)[.])+([A-Za-z_](\w*[']*)|#[A-Za-z_](\w*[']*)(\d+[\]])?|SID)|[%][A-Za-z_](\w*[']*)([.][A-Za-z_](\w*[']*))+/,
         comment: $ => token(choice(
             seq('//', /.*/),
             seq(
