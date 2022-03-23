@@ -86,10 +86,6 @@
       "required": true,
       "types": [
         {
-          "type": "choice_list",
-          "named": true
-        },
-        {
           "type": "mod_apply",
           "named": true
         }
@@ -710,10 +706,6 @@
         {
           "type": "mod_app_arg",
           "named": true
-        },
-        {
-          "type": "mod_arg_list",
-          "named": true
         }
       ]
     }
@@ -785,10 +777,6 @@
       "types": [
         {
           "type": "mod_ref",
-          "named": true
-        },
-        {
-          "type": "mod_refs",
           "named": true
         }
       ]
@@ -1179,10 +1167,6 @@
         {
           "type": "id",
           "named": true
-        },
-        {
-          "type": "step_or_update_lhs",
-          "named": true
         }
       ]
     }
@@ -1568,10 +1552,6 @@
       "types": [
         {
           "type": "val_or_model_program",
-          "named": true
-        },
-        {
-          "type": "vom_param_list",
           "named": true
         }
       ]
