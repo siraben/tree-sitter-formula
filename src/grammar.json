@@ -1,5 +1,6 @@
 {
   "name": "formula",
+  "word": "bid",
   "rules": {
     "program": {
       "type": "CHOICE",

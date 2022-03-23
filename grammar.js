@@ -7,6 +7,7 @@ module.exports = grammar({
     conflicts: $ => [
         [$.bareid, $.qualid]
     ],
+    word: $ => $.bid,
     rules: {
         program: $ => choice(
             $.config,
