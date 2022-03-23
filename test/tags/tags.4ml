@@ -1,0 +1,18 @@
+domain D {
+ //    ^ definition.domain
+ Foo :- x is 3.
+ // <- definition.rule
+ Bar :- x = f(x).
+ //         ^ reference.call
+}
+
+model m of D {
+  //  ^ definition.model
+  //       ^ reference.domain
+  c1 is Component(0, 10).
+  //    ^ reference.call
+  c2 is Component(1, 90).
+  p1 is Processor(0).
+  Mapping(c1, p1).
+  Mapping(c2, p1).
+}
