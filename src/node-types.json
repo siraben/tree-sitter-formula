@@ -307,7 +307,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -324,6 +324,10 @@
         },
         {
           "type": "qualid",
+          "named": true
+        },
+        {
+          "type": "range",
           "named": true
         },
         {
@@ -355,32 +359,24 @@
   {
     "type": "field",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "unnbody",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "fields",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "field",
           "named": true
         }
       ]
@@ -737,7 +733,18 @@
   {
     "type": "mod_ref_rename",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -1028,6 +1035,21 @@
     }
   },
   {
+    "type": "range",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "digits",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "relop",
     "named": true,
     "fields": {}
@@ -1248,15 +1270,22 @@
   {
     "type": "transform",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "transform_rest",
           "named": true
@@ -1362,15 +1391,22 @@
   {
     "type": "type_decl",
     "named": true,
-    "fields": {},
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "type_decl_body",
           "named": true
@@ -1387,7 +1423,7 @@
       "required": true,
       "types": [
         {
-          "type": "fields",
+          "type": "field",
           "named": true
         },
         {
@@ -1485,15 +1521,22 @@
   {
     "type": "val_or_model_program",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "bareid",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "bareid",
-          "named": true
-        },
         {
           "type": "mod_ref_rename",
           "named": true
