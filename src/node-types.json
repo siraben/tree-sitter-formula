@@ -87,26 +87,11 @@
       "required": true,
       "types": [
         {
-          "type": "compr_rest",
+          "type": "body_list",
           "named": true
         },
         {
           "type": "func_term_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "compr_rest",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "body_list",
           "named": true
         }
       ]

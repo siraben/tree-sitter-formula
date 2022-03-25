@@ -1949,34 +1949,29 @@
           "name": "func_term_list"
         },
         {
-          "type": "SYMBOL",
-          "name": "compr_rest"
-        }
-      ]
-    },
-    "compr_rest": {
-      "type": "CHOICE",
-      "members": [
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "|"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "body_list"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "}"
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "|"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "body_list"
-            },
-            {
-              "type": "STRING",
-              "value": "}"
-            }
-          ]
         }
       ]
     },

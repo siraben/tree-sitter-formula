@@ -204,11 +204,7 @@ module.exports = grammar({
         rule: $ => prec.right(1,seq($.func_term_list,
                                     optional(seq(':-',$.body_list)),
                                     '.')),
-        compr: $ => seq('{',$.func_term_list,$.compr_rest),
-        compr_rest: $ => choice(
-            '}',
-            seq('|',$.body_list,'}'),
-        ),
+        compr: $ => seq('{',$.func_term_list,optional(seq('|',$.body_list)),'}'),
         body_list: $ => sep1($.body,';'),
         body: $ => commaSep1($.constraint),
         constraint: $ => choice(
