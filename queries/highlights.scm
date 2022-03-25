@@ -1,40 +1,42 @@
-[ "domain"
-  "model"
-  "transform"
-  "system"
-  "machine"
-  "partial"
-  "ensures"
-  "requires"
-  "conforms"
-  "includes"
-  "extends"
-  "of"
-  "returns"
-  "at"
-  "some"
-  "atleast"
-  "atmost"
-  "initially"
-  "next"
-  "property"
-  "boot"
-  "no"
-  "is"
-  "new"
-  "inj"
-  "bij"
-  "sur"
-  "fun"
-  "any"
+[
+ "domain"
+ "model"
+ "transform"
+ "system"
+ "machine"
+ "partial"
+ "ensures"
+ "requires"
+ "conforms"
+ "includes"
+ "extends"
+ "of"
+ "returns"
+ "at"
+ "some"
+ "atleast"
+ "atmost"
+ "initially"
+ "next"
+ "property"
+ "boot"
+ "no"
+ "is"
+ "new"
+ "inj"
+ "bij"
+ "sur"
+ "fun"
+ "any"
  ] @keyword
 
 (comment) @comment
 
-[ (digits)
-  (real)
-  (frac)
-  ] @number
+[
+ (digits)
+ (real)
+ (frac)
+ ] @number
 
 (type_decl type: _ @type)
 (typeid) @type
@@ -58,3 +60,5 @@
 (mod_ref_no_rename (bareid) @module)
 
 (transform name: (bareid) @function)
+
+(model_intro (bareid) @constructor)
