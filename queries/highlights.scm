@@ -62,3 +62,5 @@
 (transform name: (bareid) @function)
 
 (model_intro (bareid) @constructor)
+
+(constraint (id) (func_term (atom (id))) @type)
