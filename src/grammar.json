@@ -1455,33 +1455,29 @@
       ]
     },
     "type_decl": {
-      "type": "PREC_RIGHT",
-      "value": 2,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "type",
-            "content": {
-              "type": "SYMBOL",
-              "name": "bareid"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "::="
-          },
-          {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
             "type": "SYMBOL",
-            "name": "type_decl_body"
-          },
-          {
-            "type": "STRING",
-            "value": "."
+            "name": "bareid"
           }
-        ]
-      }
+        },
+        {
+          "type": "STRING",
+          "value": "::="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_decl_body"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        }
+      ]
     },
     "type_decl_body": {
       "type": "CHOICE",
@@ -2509,12 +2505,7 @@
       "name": "comment"
     }
   ],
-  "conflicts": [
-    [
-      "bareid",
-      "qualid"
-    ]
-  ],
+  "conflicts": [],
   "precedences": [],
   "externals": [],
   "inline": [],

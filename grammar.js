@@ -9,9 +9,7 @@ module.exports = grammar({
         $.comment,
     ],
     conflicts: $ => [
-        [$.bareid, $.qualid]
     ],
-    // word: $ => bid,
     rules: {
         program: $ => choice(
             $.config,
@@ -165,7 +163,7 @@ module.exports = grammar({
         mod_ref: $ => choice($.mod_ref_rename, $.mod_ref_no_rename),
         mod_ref_rename: $ => seq(field('name',$.bareid), '::', $.bareid,optional(seq('@',$.string))),
         mod_ref_no_rename: $ => seq($.bareid, optional(seq('@',$.string))),
-        type_decl: $ => prec.right(2,seq(field('type',$.bareid), '::=',$.type_decl_body,'.')),
+        type_decl: $ => seq(field('type',$.bareid), '::=',$.type_decl_body,'.'),
         type_decl_body: $ => choice(
             $.unnbody,
             seq('(',$.fields,')'),
