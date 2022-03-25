@@ -44,7 +44,7 @@
 
 [ "+" "-" "*" "/" ":-" "::=" "::" "=>" "->" ] @operator
 
-[ "." ] @punctuation.delimiter
+[ "." "|" ] @punctuation.delimiter
 
 [ "(" ")" "{" "}" "[" "]" ] @punctuation.bracket
 
