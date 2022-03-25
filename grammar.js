@@ -168,13 +168,13 @@ module.exports = grammar({
         type_decl: $ => prec.right(2,seq(field('type',$.bareid), '::=',$.type_decl_body,'.')),
         type_decl_body: $ => choice(
             $.unnbody,
-            seq('(',$._fields,')'),
-            seq('-','(',$._fields,')'),
-            seq('new','(',$._fields,')'),
-            seq($.fun_decl,'(',$._fields,$.maparrow,$._fields,')'),
+            seq('(',$.fields,')'),
+            seq('-','(',$.fields,')'),
+            seq('new','(',$.fields,')'),
+            seq($.fun_decl,'(',$.fields,$.maparrow,$.fields,')'),
         ),
         fun_decl: $ => choice('inj','bij','sur','fun'),
-        _fields: $ => commaSep1($.field),
+        fields: $ => commaSep1($.field),
         field: $ => choice(
             $.unnbody,
             seq('any',$.unnbody),

@@ -383,6 +383,21 @@
     }
   },
   {
+    "type": "fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "fun_decl",
     "named": true,
     "fields": {}
@@ -1423,7 +1438,7 @@
       "required": true,
       "types": [
         {
-          "type": "field",
+          "type": "fields",
           "named": true
         },
         {
