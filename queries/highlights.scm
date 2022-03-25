@@ -42,9 +42,9 @@
 (typeid) @type
 (func_term name: (_) @function.builtin)
 
-[ "+" "-" "*" "/" ":-" "::=" "::" "=>" "->" ] @operator
+[ "+" "-" "*" "/" ":-" "::=" "::" "=>" "->" "=" ] @operator
 
-[ "." "|" ] @punctuation.delimiter
+[ "." "|" "," ] @punctuation.delimiter
 
 [ "(" ")" "{" "}" "[" "]" ] @punctuation.bracket
 
