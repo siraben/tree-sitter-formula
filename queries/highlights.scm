@@ -7,4 +7,6 @@
 (id) @variable.builtin
 (bareid) @variable.builtin
 
+
 (typeid) @type
+(func_term name: (_) @function.builtin)
