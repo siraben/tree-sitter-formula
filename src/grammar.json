@@ -1,6 +1,5 @@
 {
   "name": "formula",
-  "word": "bid",
   "rules": {
     "program": {
       "type": "CHOICE",
@@ -2356,79 +2355,70 @@
               ]
             },
             {
-              "type": "SYMBOL",
-              "name": "bid"
+              "type": "PATTERN",
+              "value": "[A-Za-z_](\\w*'*)"
             }
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "tid"
+          "type": "PATTERN",
+          "value": "#[A-Za-z_](\\w*'*)(\\[\\d+\\])?"
         }
       ]
     },
     "qualid": {
-      "type": "PREC_RIGHT",
-      "value": 4,
+      "type": "TOKEN",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "SEQ",
+        "type": "PREC_RIGHT",
+        "value": 2,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "[A-Za-z_](\\w*'*)"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "bid"
+                      "type": "PATTERN",
+                      "value": "[A-Za-z_](\\w*'*)"
                     },
                     {
-                      "type": "STRING",
-                      "value": "."
+                      "type": "PATTERN",
+                      "value": "#[A-Za-z_](\\w*'*)(\\[\\d+\\])?"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "%[A-Za-z_](\\w*'*)(\\.[A-Za-z_](\\w*'*))*"
                     }
                   ]
                 }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "bid"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "tid"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "sid"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "PATTERN",
-            "value": "%[A-Za-z_]\\w*'*(\\.[A-Za-z_]\\w*'*)+"
-          }
-        ]
+              ]
+            },
+            {
+              "type": "PATTERN",
+              "value": "%[A-Za-z_]\\w*'*(\\.[A-Za-z_]\\w*'*)+"
+            }
+          ]
+        }
       }
-    },
-    "bid": {
-      "type": "PATTERN",
-      "value": "[A-Za-z_](\\w*'*)"
-    },
-    "tid": {
-      "type": "PATTERN",
-      "value": "#[A-Za-z_](\\w*'*)(\\[\\d+\\])?"
-    },
-    "sid": {
-      "type": "PATTERN",
-      "value": "%[A-Za-z_](\\w*'*)(\\.[A-Za-z_](\\w*'*))*"
     },
     "comment": {
       "type": "TOKEN",

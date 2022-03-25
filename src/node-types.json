@@ -21,21 +21,7 @@
   {
     "type": "bareid",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "bid",
-          "named": true
-        },
-        {
-          "type": "tid",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "binop",
@@ -1042,29 +1028,6 @@
     }
   },
   {
-    "type": "qualid",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "bid",
-          "named": true
-        },
-        {
-          "type": "sid",
-          "named": true
-        },
-        {
-          "type": "tid",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "relop",
     "named": true,
     "fields": {}
@@ -1682,10 +1645,6 @@
     "named": false
   },
   {
-    "type": "bid",
-    "named": true
-  },
-  {
     "type": "bij",
     "named": false
   },
@@ -1774,6 +1733,10 @@
     "named": false
   },
   {
+    "type": "qualid",
+    "named": true
+  },
+  {
     "type": "real",
     "named": true
   },
@@ -1786,10 +1749,6 @@
     "named": false
   },
   {
-    "type": "sid",
-    "named": true
-  },
-  {
     "type": "some",
     "named": false
   },
@@ -1800,10 +1759,6 @@
   {
     "type": "system",
     "named": false
-  },
-  {
-    "type": "tid",
-    "named": true
   },
   {
     "type": "transform",
