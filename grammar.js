@@ -1,5 +1,8 @@
+// BID: [A-Za-z_]([A-Za-z_0-9]*[']*)
 const bid = /[A-Za-z_](\w*'*)/;
+// TID: [#][A-Za-z_]([A-Za-z_0-9]*[']*)([[][0-9]+[\]])?
 const tid = /#[A-Za-z_](\w*'*)(\[\d+\])?/;
+// SID: [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))*
 const sid = /%[A-Za-z_](\w*'*)(\.[A-Za-z_](\w*'*))*/;
 
 module.exports = grammar({
@@ -215,7 +218,7 @@ module.exports = grammar({
             seq('no',$.id,'is',$.func_term),
             seq($.func_term,$.relop,$.func_term),
         ),
-        func_term_list: $ => prec.right(2,commaSep1($.func_or_compr)),
+        func_term_list: $ => commaSep1($.func_or_compr),
         func_or_compr: $ => choice($.func_term, $.compr),
         func_term: $ => choice(
             $.atom,
@@ -240,12 +243,6 @@ module.exports = grammar({
             // [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+
             /%[A-Za-z_]\w*'*(\.[A-Za-z_]\w*'*)+/,
         ))),
-        // BID: [A-Za-z_]([A-Za-z_0-9]*[']*)
-        // bid: $ => (/[A-Za-z_](\w*'*)/),
-        // TID: [#][A-Za-z_]([A-Za-z_0-9]*[']*)([[][0-9]+[\]])?
-        // tid: $ => /#[A-Za-z_](\w*'*)(\[\d+\])?/,
-        // SID: [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))*
-        // sid: $ => /%[A-Za-z_](\w*'*)(\.[A-Za-z_](\w*'*))*/,
         comment: $ => token(choice(
             seq('//', /.*/),
             seq(
