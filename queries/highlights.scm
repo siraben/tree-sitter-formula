@@ -38,6 +38,8 @@
  (frac)
  ] @number
 
+(string) @string
+
 (type_decl type: _ @type)
 (typeid) @type
 (func_term name: (_) @function.builtin)
@@ -62,5 +64,6 @@
 (transform name: (bareid) @function)
 
 (model_intro (bareid) @constructor)
+(model_fact (bareid) @variable.builtin)
 
 (constraint (id) (func_term (atom (id))) @type)
