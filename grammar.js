@@ -11,8 +11,6 @@ module.exports = grammar({
         /\s/,
         $.comment,
     ],
-    conflicts: $ => [
-    ],
     rules: {
         program: $ => choice(
             $.config,
