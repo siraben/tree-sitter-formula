@@ -68,10 +68,7 @@ module.exports = grammar({
             $.model_fact,
             choice(seq(',',$.model_fact_list),'.'),
         ),
-        model_fact: $ => choice(
-            $.func_term,
-            seq($.bareid,'is',$.func_term),
-        ),
+        model_fact: $ => seq(optional(seq($.bareid,'is')),$.func_term) ,
         card_spec: $ => choice(
             'some',
             'atmost',
@@ -83,24 +80,15 @@ module.exports = grammar({
             seq($.model_intro, 'includes', $.mod_refs),
             seq($.model_intro, 'extends', $.mod_refs),
         ),
-        model_intro: $ => choice(
-            seq('model', $.bareid, 'of', $.mod_ref),
-            seq('partial', 'model', $.bareid, 'of', $.mod_ref),
-        ),
+        model_intro: $ => seq(optional('partial'), 'model', $.bareid, 'of', $.mod_ref),
         tsystem: $ => seq('transform', 'system', $.bareid, $.tsystem_rest),
         tsystem_rest: $ => seq($.transform_sig_config, '{',optional($.trans_steps),'}'),
         trans_steps: $ => repeat1($.trans_step_config),
-        trans_step_config: $ => choice(
-            $.step,
-            seq($.sentence_config, $.step),
-        ),
+        trans_step_config: $ => seq(optional($.sentence_config), $.step),
         transform: $ => seq('transform', field('name',$.bareid), $.transform_rest),
         transform_rest: $ => seq($.transform_sig_config, '{',optional($.trans_body),'}'),
         trans_body: $ => repeat1($.trans_sentence_config),
-        trans_sentence_config: $ => choice(
-            $.trans_sentence,
-            seq($.sentence_config, $.trans_sentence),
-        ),
+        trans_sentence_config: $ => seq(optional($.sentence_config), $.trans_sentence),
         trans_sentence: $ => choice(
             $.rule,
             $.type_decl,
@@ -118,10 +106,7 @@ module.exports = grammar({
         trans_sig_in: $ => seq('(',optional($.vom_param_list), ')'),
         domain: $ => seq($.domain_sig_config,'{',optional($.dom_sentences),'}'),
         dom_sentences: $ => repeat1($.dom_sentence_config),
-        dom_sentence_config: $ => choice(
-            $.dom_sentence,
-            seq($.sentence_config,$.dom_sentence),
-        ),
+        dom_sentence_config: $ => seq(optional($.sentence_config),$.dom_sentence),
         dom_sentence: $ => choice(
             $.rule,
             $.type_decl,
@@ -204,9 +189,7 @@ module.exports = grammar({
         frac: $ => /\d+\/[-+]?0*[1-9]\d*/,
         string: $ => seq('"', /(?:[^"\\]|\\.)*/, '"'),
         range: $ => seq(optional('-'),$.digits,'..',optional('-'),$.digits),
-        rule: $ => prec.right(1,seq($.func_term_list,
-                                    optional(seq(':-',$.body_list)),
-                                    '.')),
+        rule: $ => seq($.func_term_list, optional(seq(':-',$.body_list)), '.'),
         compr: $ => seq('{',$.func_term_list,optional(seq('|',$.body_list)),'}'),
         body_list: $ => sep1($.body,';'),
         body: $ => commaSep1($.constraint),
