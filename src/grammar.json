@@ -2019,19 +2019,53 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "func_term"
-        },
-        {
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "id"
-            },
-            {
-              "type": "STRING",
-              "value": "is"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "no"
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "id"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "is"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -2049,40 +2083,6 @@
             {
               "type": "SYMBOL",
               "name": "compr"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "no"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "func_term"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "no"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "id"
-            },
-            {
-              "type": "STRING",
-              "value": "is"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "func_term"
             }
           ]
         },

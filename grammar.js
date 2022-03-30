@@ -184,11 +184,9 @@ module.exports = grammar({
         body_list: $ => sep1($.body,';'),
         body: $ => commaSep1($.constraint),
         constraint: $ => choice(
-            $.func_term,
-            seq($.id,'is',$.func_term),
+            // func_term, id is func_term, no id is func_term, no func_term
+            seq(optional(seq(optional('no'),optional(seq($.id,'is')))),$.func_term),
             seq('no',$.compr),
-            seq('no',$.func_term),
-            seq('no',$.id,'is',$.func_term),
             seq($.func_term,$.relop,$.func_term),
         ),
         func_term_list: $ => commaSep1($.func_or_compr),
