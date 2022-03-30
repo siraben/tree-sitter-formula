@@ -883,10 +883,6 @@
           "named": true
         },
         {
-          "type": "model_fact_list",
-          "named": true
-        },
-        {
           "type": "sentence_config",
           "named": true
         }

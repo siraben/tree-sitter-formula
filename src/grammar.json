@@ -278,8 +278,17 @@
     "model_body": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "model_sentence"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "model_sentence"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          }
+        ]
       }
     },
     "model_sentence": {
@@ -329,10 +338,6 @@
             {
               "type": "SYMBOL",
               "name": "body_list"
-            },
-            {
-              "type": "STRING",
-              "value": "."
             }
           ]
         },
@@ -346,10 +351,6 @@
             {
               "type": "SYMBOL",
               "name": "body_list"
-            },
-            {
-              "type": "STRING",
-              "value": "."
             }
           ]
         },
@@ -371,10 +372,6 @@
             {
               "type": "SYMBOL",
               "name": "id"
-            },
-            {
-              "type": "STRING",
-              "value": "."
             }
           ]
         }
@@ -384,42 +381,58 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "sentence_config"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "model_fact"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": ","
+                  "type": "SYMBOL",
+                  "name": "sentence_config"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "model_fact_list"
+                  "type": "BLANK"
                 }
               ]
             },
             {
-              "type": "STRING",
-              "value": "."
+              "type": "SYMBOL",
+              "name": "model_fact"
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "sentence_config"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "model_fact"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
