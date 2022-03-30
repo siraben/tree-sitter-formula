@@ -44,6 +44,21 @@
     }
   },
   {
+    "type": "body_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "card_spec",
     "named": true,
     "fields": {}
@@ -72,7 +87,7 @@
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "body_list",
           "named": true
         },
         {
@@ -156,11 +171,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "body_list",
           "named": true
         },
         {
@@ -788,7 +803,7 @@
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "body_list",
           "named": true
         },
         {
@@ -1029,7 +1044,7 @@
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "body_list",
           "named": true
         },
         {
@@ -1128,7 +1143,7 @@
     "fields": {}
   },
   {
-    "type": "trans_sentence",
+    "type": "trans_body",
     "named": true,
     "fields": {},
     "children": {
@@ -1136,7 +1151,22 @@
       "required": true,
       "types": [
         {
-          "type": "body",
+          "type": "trans_sentence_config",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trans_sentence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "body_list",
           "named": true
         },
         {
@@ -1238,7 +1268,7 @@
       "required": true,
       "types": [
         {
-          "type": "trans_sentence_config",
+          "type": "trans_body",
           "named": true
         },
         {

@@ -30,8 +30,7 @@ module.exports = grammar({
         machine_sentence: $ => choice(
             $.machine_prop,
             seq('boot', $.step),
-            seq('initially', $.update),
-            seq('next', $.update),
+            seq(choice('initially','next'), $.update),
         ),
         machine_prop: $ => seq(
             'property',
@@ -53,8 +52,8 @@ module.exports = grammar({
         model_sentence: $ => choice($.model_fact_list,$.model_contract_conf),
         model_contract_conf: $ => seq(optional($.sentence_config),$.model_contract),
         model_contract: $ => choice(
-            seq('ensures',$._body_list),
-            seq('requires',$._body_list),
+            seq('ensures',$.body_list),
+            seq('requires',$.body_list),
             seq('requires',$.card_spec,/d+/,$.id),
         ),
         model_fact_list: $ => commaSep1(seq(optional($.sentence_config), $.model_fact)),
@@ -76,14 +75,13 @@ module.exports = grammar({
         trans_steps: $ => repeat1(seq($._trans_step_config,'.')),
         _trans_step_config: $ => seq(optional($.sentence_config), $.step),
         transform: $ => seq('transform', field('name',$.bareid), $.transform_rest),
-        transform_rest: $ => seq($.transform_sig_config, '{',optional($._trans_body),'}'),
-        _trans_body: $ => repeat1(seq($.trans_sentence_config,'.')),
+        transform_rest: $ => seq($.transform_sig_config, '{',optional($.trans_body),'}'),
+        trans_body: $ => repeat1(seq($.trans_sentence_config,'.')),
         trans_sentence_config: $ => seq(optional($.sentence_config), $.trans_sentence),
         trans_sentence: $ => choice(
             $.rule,
             $.type_decl,
-            seq('ensures', $._body_list),
-            seq('requires', $._body_list),
+            seq(choice('ensures','requires'), $.body_list),
         ),
         transform_sig_config: $ => seq($.transform_sig, optional($.config)),
         transform_sig: $ => seq(
@@ -100,7 +98,7 @@ module.exports = grammar({
         dom_sentence: $ => choice(
             $.rule,
             $.type_decl,
-            seq('conforms',$._body_list),
+            seq('conforms',$.body_list),
         ),
         domain_sig_config: $ => seq($.domain_sig, optional($.config)),
         domain_sig: $ => seq(
@@ -178,9 +176,9 @@ module.exports = grammar({
         frac: $ => /\d+\/[-+]?0*[1-9]\d*/,
         string: $ => seq('"', /(?:[^"\\]|\\.)*/, '"'),
         range: $ => seq(optional('-'),$.digits,'..',optional('-'),$.digits),
-        rule: $ => seq($.func_term_list, optional(seq(':-',$._body_list))),
-        compr: $ => seq('{',$.func_term_list,optional(seq('|',$._body_list)),'}'),
-        _body_list: $ => sep1($.body,';'),
+        rule: $ => seq($.func_term_list, optional(seq(':-',$.body_list))),
+        compr: $ => seq('{',$.func_term_list,optional(seq('|',$.body_list)),'}'),
+        body_list: $ => sep1($.body,';'),
         body: $ => commaSep1($.constraint),
         constraint: $ => choice(
             // func_term, id is func_term, no id is func_term, no func_term
