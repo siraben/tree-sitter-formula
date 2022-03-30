@@ -510,7 +510,11 @@
       "required": true,
       "types": [
         {
-          "type": "machine_sentence_conf",
+          "type": "machine_sentence",
+          "named": true
+        },
+        {
+          "type": "sentence_config",
           "named": true
         }
       ]
@@ -553,25 +557,6 @@
         },
         {
           "type": "update",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "machine_sentence_conf",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "machine_sentence",
-          "named": true
-        },
-        {
-          "type": "sentence_config",
           "named": true
         }
       ]
@@ -1230,7 +1215,7 @@
     }
   },
   {
-    "type": "trans_step_config",
+    "type": "trans_steps",
     "named": true,
     "fields": {},
     "children": {
@@ -1243,21 +1228,6 @@
         },
         {
           "type": "step",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "trans_steps",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "trans_step_config",
           "named": true
         }
       ]
