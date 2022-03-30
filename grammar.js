@@ -95,7 +95,7 @@ module.exports = grammar({
         ),
         trans_sig_in: $ => seq('(',optional($.vom_param_list), ')'),
         domain: $ => seq($.domain_sig_config,'{',optional($.dom_sentences),'}'),
-        dom_sentences: $ => prec.right(3,repeat1(seq($.dom_sentence_config, '.'))),
+        dom_sentences: $ => repeat1(seq($.dom_sentence_config, '.')),
         dom_sentence_config: $ => seq(optional($.sentence_config),$.dom_sentence),
         dom_sentence: $ => choice(
             $.rule,

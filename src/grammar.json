@@ -893,23 +893,19 @@
       ]
     },
     "dom_sentences": {
-      "type": "PREC_RIGHT",
-      "value": 3,
+      "type": "REPEAT1",
       "content": {
-        "type": "REPEAT1",
-        "content": {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "dom_sentence_config"
-            },
-            {
-              "type": "STRING",
-              "value": "."
-            }
-          ]
-        }
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "dom_sentence_config"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          }
+        ]
       }
     },
     "dom_sentence_config": {
