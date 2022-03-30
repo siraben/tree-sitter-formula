@@ -1143,21 +1143,6 @@
     "fields": {}
   },
   {
-    "type": "trans_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "trans_sentence_config",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "trans_sentence",
     "named": true,
     "fields": {},
@@ -1268,7 +1253,7 @@
       "required": true,
       "types": [
         {
-          "type": "trans_body",
+          "type": "trans_sentence_config",
           "named": true
         },
         {

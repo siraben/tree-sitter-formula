@@ -632,8 +632,17 @@
     "trans_steps": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "_trans_step_config"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_trans_step_config"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          }
+        ]
       }
     },
     "_trans_step_config": {
@@ -654,10 +663,6 @@
         {
           "type": "SYMBOL",
           "name": "step"
-        },
-        {
-          "type": "STRING",
-          "value": "."
         }
       ]
     },
@@ -698,7 +703,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "trans_body"
+              "name": "_trans_body"
             },
             {
               "type": "BLANK"
@@ -711,7 +716,7 @@
         }
       ]
     },
-    "trans_body": {
+    "_trans_body": {
       "type": "REPEAT1",
       "content": {
         "type": "SEQ",
