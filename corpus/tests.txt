@@ -81,15 +81,14 @@ domain D
                     (atom
                       (id
                         (bareid))))))
-              (body_list
-                (body
-                  (constraint
-                    (id
-                      (bareid))
-                    (func_term
-                      (atom
-                        (id
-                          (bareid))))))))))
+              (body
+                (constraint
+                  (id
+                    (bareid))
+                  (func_term
+                    (atom
+                      (id
+                        (bareid)))))))))
         (dom_sentence_config
           (dom_sentence
             (rule
@@ -99,15 +98,14 @@ domain D
                     (atom
                       (id
                         (bareid))))))
-              (body_list
-                (body
-                  (constraint
-                    (id
-                      (bareid))
-                    (func_term
-                      (atom
-                        (id
-                          (qualid))))))))))))))
+              (body
+                (constraint
+                  (id
+                    (bareid))
+                  (func_term
+                    (atom
+                      (id
+                        (qualid)))))))))))))
 
 ================================================================================
 Type declarations followed by rules
@@ -194,23 +192,22 @@ transform T1 (in1:: A1, in2:: A1) returns (out:: A1')
                           (atom
                             (id
                               (bareid)))))))))
-              (body_list
-                (body
-                  (constraint
-                    (func_term
-                      (id
-                        (qualid))
-                      (func_term_list
-                        (func_or_compr
-                          (func_term
-                            (atom
-                              (id
-                                (bareid)))))
-                        (func_or_compr
-                          (func_term
-                            (atom
-                              (id
-                                (bareid)))))))))))))
+              (body
+                (constraint
+                  (func_term
+                    (id
+                      (qualid))
+                    (func_term_list
+                      (func_or_compr
+                        (func_term
+                          (atom
+                            (id
+                              (bareid)))))
+                      (func_or_compr
+                        (func_term
+                          (atom
+                            (id
+                              (bareid))))))))))))
         (trans_sentence_config
           (trans_sentence
             (type_decl
@@ -247,12 +244,11 @@ transform T1 (in1:: A1, in2:: A1) returns (out:: A1')
                           (atom
                             (id
                               (bareid)))))))))
-              (body_list
-                (body
-                  (constraint
-                    (id
-                      (bareid))
-                    (func_term
-                      (atom
-                        (id
-                          (qualid))))))))))))))
+              (body
+                (constraint
+                  (id
+                    (bareid))
+                  (func_term
+                    (atom
+                      (id
+                        (qualid)))))))))))))

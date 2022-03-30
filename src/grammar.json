@@ -336,7 +336,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "body_list"
+              "name": "_body_list"
             }
           ]
         },
@@ -349,7 +349,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "body_list"
+              "name": "_body_list"
             }
           ]
         },
@@ -773,7 +773,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "body_list"
+              "name": "_body_list"
             }
           ]
         },
@@ -786,7 +786,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "body_list"
+              "name": "_body_list"
             }
           ]
         }
@@ -949,7 +949,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "body_list"
+              "name": "_body_list"
             }
           ]
         }
@@ -1656,29 +1656,16 @@
               "value": ":"
             },
             {
-              "type": "SYMBOL",
-              "name": "unnbody"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "name",
-              "content": {
-                "type": "SYMBOL",
-                "name": "bareid"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": ":"
-            },
-            {
-              "type": "STRING",
-              "value": "any"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "any"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -1916,7 +1903,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "body_list"
+                  "name": "_body_list"
                 }
               ]
             },
@@ -1950,7 +1937,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "body_list"
+                  "name": "_body_list"
                 }
               ]
             },
@@ -1965,7 +1952,7 @@
         }
       ]
     },
-    "body_list": {
+    "_body_list": {
       "type": "SEQ",
       "members": [
         {
@@ -2375,7 +2362,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC_RIGHT",
-        "value": 2,
+        "value": 1,
         "content": {
           "type": "CHOICE",
           "members": [

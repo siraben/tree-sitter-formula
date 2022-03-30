@@ -53,8 +53,8 @@ module.exports = grammar({
         model_sentence: $ => choice($.model_fact_list,$.model_contract_conf),
         model_contract_conf: $ => seq(optional($.sentence_config),$.model_contract),
         model_contract: $ => choice(
-            seq('ensures',$.body_list),
-            seq('requires',$.body_list),
+            seq('ensures',$._body_list),
+            seq('requires',$._body_list),
             seq('requires',$.card_spec,/d+/,$.id),
         ),
         model_fact_list: $ => commaSep1(seq(optional($.sentence_config), $.model_fact)),
@@ -82,8 +82,8 @@ module.exports = grammar({
         trans_sentence: $ => choice(
             $.rule,
             $.type_decl,
-            seq('ensures', $.body_list),
-            seq('requires', $.body_list),
+            seq('ensures', $._body_list),
+            seq('requires', $._body_list),
         ),
         transform_sig_config: $ => seq($.transform_sig, optional($.config)),
         transform_sig: $ => seq(
@@ -100,7 +100,7 @@ module.exports = grammar({
         dom_sentence: $ => choice(
             $.rule,
             $.type_decl,
-            seq('conforms',$.body_list),
+            seq('conforms',$._body_list),
         ),
         domain_sig_config: $ => seq($.domain_sig, optional($.config)),
         domain_sig: $ => seq(
@@ -154,8 +154,7 @@ module.exports = grammar({
         field: $ => choice(
             $.unnbody,
             seq('any',$.unnbody),
-            seq(field('name',$.bareid),':',$.unnbody),
-            seq(field('name',$.bareid),':','any',$.unnbody),
+            seq(field('name',$.bareid),':',optional('any'),$.unnbody),
         ),
         maparrow: $ => choice('->','=>'),
         unnbody: $ => prec.right(3,sep1($.unncmp,'+')),
@@ -179,9 +178,9 @@ module.exports = grammar({
         frac: $ => /\d+\/[-+]?0*[1-9]\d*/,
         string: $ => seq('"', /(?:[^"\\]|\\.)*/, '"'),
         range: $ => seq(optional('-'),$.digits,'..',optional('-'),$.digits),
-        rule: $ => seq($.func_term_list, optional(seq(':-',$.body_list))),
-        compr: $ => seq('{',$.func_term_list,optional(seq('|',$.body_list)),'}'),
-        body_list: $ => sep1($.body,';'),
+        rule: $ => seq($.func_term_list, optional(seq(':-',$._body_list))),
+        compr: $ => seq('{',$.func_term_list,optional(seq('|',$._body_list)),'}'),
+        _body_list: $ => sep1($.body,';'),
         body: $ => commaSep1($.constraint),
         constraint: $ => choice(
             // func_term, id is func_term, no id is func_term, no func_term
@@ -208,7 +207,7 @@ module.exports = grammar({
         relop: $ => choice('=','!=','<','<=','>','>=',':'),
         // BAREID: ([%]?BID | TID) ;
         bareid: $ => choice(seq(optional('%'),bid),tid),
-        qualid: $ => token(prec.right(2,choice(
+        qualid: $ => token(prec.right(1,choice(
             // (BID[.])+(BID|TID|SID)
             seq(repeat1(seq(bid,'.')),choice(bid,tid,sid)),
             // [%][A-Za-z_]([A-Za-z_0-9]*[']*)([.][A-Za-z_]([A-Za-z_0-9]*[']*))+
