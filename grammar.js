@@ -143,7 +143,7 @@ module.exports = grammar({
         type_decl_body: $ => choice(
             $.unnbody,
             seq('(',$.fields,')'),
-            seq('-','(',$.fields,')'),
+            seq('sub','(',$.fields,')'),
             seq('new','(',$.fields,')'),
             seq($.fun_decl,'(',$.fields,$.maparrow,$.fields,')'),
         ),

@@ -1498,7 +1498,7 @@
           "members": [
             {
               "type": "STRING",
-              "value": "-"
+              "value": "sub"
             },
             {
               "type": "STRING",
