@@ -2,6 +2,8 @@
 Formula grammar for
 [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
+Read the research report [here](./report.pdf).
+
 ![Syntax highlighting](./example.png)
 
 ## Building
